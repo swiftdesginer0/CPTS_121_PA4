@@ -5,7 +5,7 @@
 //  Created by Kyle Parker on 2/24/21.
 //
 
-#include "functions.hpp"
+#include "main.hpp"
 
 /// <#SUMMARY#>
 ///

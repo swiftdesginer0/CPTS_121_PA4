@@ -1,12 +1,12 @@
 //
-//  main_header.hpp
+//  standard.hpp
 //  PA4
 //
 //  Created by Kyle Parker on 3/7/21.
 //
 
-#ifndef main_header_h
-#define main_header_h
+#ifndef standard_hpp
+#define standard_hpp
 
 // following macros definitons were found at https://sourceforge.net/p/predef/wiki/OperatingSystems/
 
@@ -35,7 +35,9 @@
 #endif
 
 // include libraries for ALL platforms. Platform-specific libraries should be imported above.
-#include <iostream> // std::cout, std::cin, std::endl, std::string
+#include <iostream> // std::cout, std::cin, std::endl
+#include <string> // std::string
+#include <vector> // std::vector
 
 
 // declare using statements
@@ -43,25 +45,7 @@ using std::cout;
 using std::cin;
 using std::endl;
 using std::string;
-
-// define structs, enums
-
-/**
- Errors thrown by fakeArray.
- 
- *Values*
- 
- `NegativeCount` The count is less than 0.
- 
- `EmptyString1` The first string argument is empty.
- 
- `EmptyStriinitSongond string argument is empty.
- 
- - Author:
- Newbie
- - Version:
- 0.1
- */
+using std::vector;
 
 // define custom/encaspulated types:
 
@@ -78,8 +62,6 @@ inline bool isYes(string str) {
 }
 
 template <typename T>
-inline bool isYes(T value) {
-    return value == 1;
-}
+inline bool isYes(T value) { return value == 1; }
 
-#endif /* main_header_h */
+#endif /* standard_hpp */

@@ -8,7 +8,7 @@
 #ifndef tests_hpp
 #define tests_hpp
 
-#include "functions.hpp"
+#include "main.hpp"
 
 
 class TestResult {

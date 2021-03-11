@@ -5,10 +5,9 @@
 //  Created by Kyle Parker on 3/7/21.
 //
 
-#include "main_header.hpp"
+#include "mylib.hpp"
 
 /// Simply print a warning if a macro is defined and warn user the OS is not supported
-///
 ///
 /// - Precondition: Program loaded into memory
 /// - Postcondition: Warning was issued if requred
@@ -22,7 +21,6 @@ void checkOS() {
 }
 
 /// throw a non-recoverable error for debugging. Should never be called when deploying software.
-///
 ///
 /// - Precondition: aruguments are all strings. all other values are not accepted.
 /// - Postcondition: program stopped.
