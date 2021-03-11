@@ -56,6 +56,16 @@ void fatalError(int, ...);
 string strToLower(string str);
 
 // define inline methods:
+/// clears the screen using a macro defined per OS for cross platform compatability.
+///
+/// - Precondition: Screen needs to be cleared
+/// - Postcondition: Screen is cleared
+/// - Warning: Any information printed prior to this call may not be accessable.
+/// - version: 1.0
+inline void clearScreen() {
+    system(CLEAR_SCREEN);
+}
+
 inline bool isYes(string str) {
     str = strToLower(str);
     return str == "yes" || str == "y";
