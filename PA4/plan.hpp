@@ -32,7 +32,7 @@ protected:
     }
     
     ~Plan() {}
-public:
+    
     string& getName() { return this->name; }
     string& updateName(string &newName) { return (this->name = newName); }
     

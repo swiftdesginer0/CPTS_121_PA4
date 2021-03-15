@@ -8,8 +8,6 @@
 #ifndef dietplan_h
 #define dietplan_h
 
-#include "plan.hpp"
-
 /**
  * DietPlan
  *
@@ -26,7 +24,7 @@
  * `ExercisePlan` (Similar type)
  */
 
-class DietPlan : Plan {
+class DietPlan : public Plan {
     int goalCalories;
 public:
     /// DietPlan copy initalizer
@@ -60,9 +58,18 @@ public:
     
     ~DietPlan() {}
     
-    int& getCalories() { return goalCalories; }
-    int& addCalories(int amount = 1) { goalCalories += 1; return goalCalories; }
+    int & getCalories() { return goalCalories; }
+    int & addCalories(int amount = 1) { goalCalories += 1; return goalCalories; }
     
+    string& getName() { return Plan::getName(); }
+    string& updateName(string &newName) { return Plan::updateName(newName); }
+    
+    string& getDate() { return Plan::getDate(); }
+    string& updateDate(string &newDate) { return Plan::updateDate(newDate); }
 };
+
+ostream & operator << (ostream &lhs, DietPlan &rhs) {
+    return lhs << "Name: " << rhs.getName() << "\nCalories Goal: " << rhs.getCalories() << "\nDate: " << rhs.getDate();
+}
 
 #endif /* dietplan_h */

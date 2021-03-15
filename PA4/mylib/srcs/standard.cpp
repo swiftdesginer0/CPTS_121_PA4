@@ -57,3 +57,16 @@ string strToLower(string &str) {
     
     return newStr;
 }
+
+/// get a yes/no response from user
+///
+/// - Precondition: user prompted for a yes/no question.
+/// - Postcondition: bool is returned, true for yes, false for no
+/// - Returns: boolean indicating success
+/// - version: 1.0
+bool getYesNo(void) {
+    string str;
+    cout << "(y)es/(n)o\n>";
+    cin >> str;
+    return isYes(str);
+}

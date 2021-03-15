@@ -43,7 +43,17 @@ public:
     ~ExercisePlan() {}
     
     int& getSteps() { return goalSteps; }
-    int& addSteps(int amount = 1) { goalSteps += 1; return goalSteps; }
+    int& updateSteps(int amount = 1) { goalSteps += 1; return goalSteps; }
+    
+    string& getName() { return Plan::getName(); }
+    string& updateName(string &newName) { return Plan::updateName(newName); }
+    
+    string& getDate() { return Plan::getDate(); }
+    string& updateDate(string &newDate) { return Plan::updateDate(newDate); }
 };
+
+ostream & operator << (ostream &lhs, ExercisePlan &rhs) {
+    return lhs << "Name: " << rhs.getName() << "\nCalories Goal: " << rhs.getSteps() << "\nDate: " << rhs.getDate();
+}
 
 #endif /* exerciseplan_hpp */

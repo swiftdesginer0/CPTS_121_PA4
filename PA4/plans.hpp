@@ -11,6 +11,5 @@
 #include "plan.hpp"
 #include "dietplan.hpp"
 #include "exerciseplan.hpp"
-#include "fitnessappwrapper.hpp"
 
 #endif /* plans_hpp */

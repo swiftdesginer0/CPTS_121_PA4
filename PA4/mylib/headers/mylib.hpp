@@ -9,5 +9,6 @@
 #define mylib_hpp
 
 #include "standard.hpp"
+#include "errordomain.hpp"
 
 #endif /* mylib_hpp */

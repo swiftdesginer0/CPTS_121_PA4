@@ -1,5 +1,5 @@
 //
-//  functions.hpp
+//  main.hpp
 //  PA4
 //
 //  Created by Kyle Parker on 2/24/21.
@@ -14,8 +14,5 @@
 // local headers
 #include "plans.hpp"
 #include "fitnessappwrapper.hpp"
-
-// define classes:
-
 
 #endif /* main_hpp */

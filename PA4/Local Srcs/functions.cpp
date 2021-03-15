@@ -5,8 +5,6 @@
 //  Created by Kyle Parker on 2/24/21.
 //
 
-#include "main.hpp"
-
 /// <#SUMMARY#>
 ///
 /// ```
