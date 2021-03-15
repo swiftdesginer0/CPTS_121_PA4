@@ -197,35 +197,6 @@ class FitnessAppWrapper final {
                         stream << *p;
                     }
                 }
-//                string line, name, date;
-//                int goal = 0, i = 0;
-////                while (getline(stream, line)) {
-////                    switch (i) {
-////                    case 0:
-////                        name = line;
-////                        break;
-////                    case 1:
-////                        goal = stoi(line);
-////                        break;
-////                    case 2:
-////                        date = line;
-////                        break;
-////                    case 3:
-////                        if (type == 'd') {
-////                            DietPlan * d = new DietPlan(goal, name, date);
-////                            this->diet.push_back(d);
-////                        } else if (type == 'e') {
-////                            ExercisePlan * e = new ExercisePlan(goal, name, date);
-////                            this->exercise.push_back(e);
-////                        }
-////                        i = 0;
-////                    default:
-////                        i = 0;
-////                        break;
-////                    }
-////                    i += 1;
-////                }
-                
                 stream.close();
                 success = true;
             } else {
@@ -370,11 +341,72 @@ class FitnessAppWrapper final {
     
     
     void exitAndSave(void) {
-        clearScreen();
+        int failureCount = 0;
+        while (true) {
+            if (failureCount > 4) {
+                cout << "This procedure has failed more than five times. Would you like to abort? ";
+                if (getYesNo()) {
+                    break;
+                }
+            }
+            
+            clearScreen();
+            fstream stream;
+            cout << "Saving diet..." << endl;
+            pair<bool, FileError::failure> dietSuccess = storeDiet(stream);
+            cout << "Saving exercise..." << endl;
+            pair<bool, FileError::failure> exerciseSuccess = storeExercise(stream);
+            cout << "Verifing data..." << endl;
+            
+            if (dietSuccess.first) {
+                cout << "Diet successfully saved!" << endl;
+            } else {
+                failureCount += 1;
+                cout << "Diet save failed! Error: " << FileError::getPrintableError(dietSuccess.second) << endl;
+                if (dietSuccess.second == FileError::couldNotOpen) {
+                    while (true) {
+                        cout << "Type the full file path to the diet file:\n> " << endl;
+                        cin >> dietFilePath;
+                        cout << "Is '" << dietFilePath << "' the correct path?" << endl;
+                        if (getYesNo()) {
+                            break;
+                        }
+                    }
+                }
+            }
+            
+            if (exerciseSuccess.first) {
+                cout << "Exercise successfully saved!" << endl;
+            } else {
+                failureCount += 1;
+                cout << "Exercise save failed! Error: " << FileError::getPrintableError(exerciseSuccess.second) << endl;
+                if (exerciseSuccess.second == FileError::couldNotOpen) {
+                    while (true) {
+                        cout << "Type the full file path to the exercise file:\n> " << endl;
+                        cin >> exerciseFilePath;
+                        cout << "Is '" << exerciseFilePath << "' the correct path?" << endl;
+                        if (getYesNo()) {
+                            break;
+                        }
+                    }
+                }
+            }
+            
+            if (dietSuccess.first && exerciseSuccess.first) {
+                break;
+            }
+        }
     }
     
     void exitNoSave(void) {
         clearScreen();
+        
+        cout << "Exit WITHOUT saving? ";
+        if (getYesNo()) {
+            exit(0);
+        } else {
+            exitAndSave();
+        }
     }
     
     inline void waitForReturn() {
@@ -464,8 +496,8 @@ public:
                         if (getYesNo()) {
                             while (true) {
                                 cout << "Type the full file path to the exercise file:\n> " << endl;
-                                cin >> dietFilePath;
-                                cout << "Is '" << dietFilePath << "' the correct path?" << endl;
+                                cin >> exerciseFilePath;
+                                cout << "Is '" << exerciseFilePath << "' the correct path?" << endl;
                                 if (getYesNo()) {
                                     bypass = true;
                                     break;
@@ -514,8 +546,8 @@ public:
                         if (getYesNo()) {
                             while (true) {
                                 cout << "Type the full file path to the exercise file:\n> " << endl;
-                                cin >> dietFilePath;
-                                cout << "Is '" << dietFilePath << "' the correct path?" << endl;
+                                cin >> exerciseFilePath;
+                                cout << "Is '" << exerciseFilePath << "' the correct path?" << endl;
                                 if (getYesNo()) {
                                     bypass = true;
                                     break;
